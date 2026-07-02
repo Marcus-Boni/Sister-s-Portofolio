@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette: bone paper, espresso ink, terracotta ── */
+  --color-bone: #f2ede4;
+  --color-bone-deep: #e9e1d2;
+  --color-ink: #1b1511;
+  --color-ink-soft: #5c4f44;
+  --color-terra: #bc5b32;
+  --color-terra-deep: #93431f;
+  --color-line: rgb(27 21 17 / 0.16);
+
+  /* ── Type ── */
+  --font-display: "Playfair Display", "Didot", "Bodoni MT", serif;
+  --font-sans: "Archivo", "Helvetica Neue", Helvetica, sans-serif;
+
+  /* ── Motion ── */
+  --ease-editorial: cubic-bezier(0.625, 0.05, 0, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-grain: grain 9s steps(10) infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+  }
+}
+
+/* ───────────────────────── Lenis ───────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+@layer base {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink-soft) var(--color-bone);
+  }
+
+  body {
+    @apply bg-bone text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-terra);
+    color: var(--color-bone);
+  }
+
+  /* native cursor hidden only while the custom cursor is mounted */
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  img {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+}
+
+/* ───────────────────────── Editorial utilities ───────────────────────── */
+@utility editorial-label {
+  font-family: var(--font-sans);
+  font-variation-settings: "wdth" 120;
+  font-weight: 500;
+  font-size: 0.625rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+@utility display-tight {
+  font-family: var(--font-display);
+  /* roomy enough that masked reveals never clip serifs or descenders (ç, Ã) */
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-ink);
+}
+
+@utility text-outline-bone {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-bone);
+}
+
+/* split-type line masking */
+.reveal-lines .line {
+  overflow: hidden;
+}
+
+.reveal-lines .line > * {
+  will-change: transform;
+}
+
+/* word-level clip for headline choreography */
+.mask-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+/* radix dialog enter/exit */
+@keyframes overlay-show {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes overlay-hide {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes content-show {
+  from { opacity: 0; scale: 0.95; }
+  to { opacity: 1; scale: 1; }
+}
+
+@keyframes content-hide {
+  from { opacity: 1; scale: 1; }
+  to { opacity: 0; scale: 0.97; }
+}
+
+.dialog-overlay[data-state='open'] {
+  animation: overlay-show 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dialog-overlay[data-state='closed'] {
+  animation: overlay-hide 0.3s ease;
+}
+
+.dialog-content[data-state='open'] {
+  animation: content-show 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dialog-content[data-state='closed'] {
+  animation: content-hide 0.3s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
