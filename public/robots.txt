@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://isadoragboni.netlify.app/sitemap.xml

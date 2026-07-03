@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Variáveis de ambiente — nunca versionar
+.env
+.env.*
+!.env.example
+
+# Cache local do Netlify CLI
+.netlify
+
+# Diretórios de agentes (gerados pelo IDE)
+.agents
+.claude
+.playwright-mcp
+skills-lock.json
+

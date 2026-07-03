@@ -8,21 +8,24 @@ interface MobileMenuProps {
   onClose: () => void
 }
 
+const EASE_SOFT = [0.22, 1, 0.36, 1] as [number, number, number, number]
+const EASE_EDITORIAL = [0.625, 0.05, 0, 1] as [number, number, number, number]
+
 const overlayVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } },
-  exit: { opacity: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1], delay: 0.15 } },
+  visible: { opacity: 1, transition: { duration: 0.35, ease: EASE_SOFT } },
+  exit: { opacity: 0, transition: { duration: 0.3, ease: EASE_SOFT, delay: 0.15 } },
 }
 
 const panelVariants = {
   hidden: { clipPath: 'inset(0% 0% 100% 0%)' },
   visible: {
     clipPath: 'inset(0% 0% 0% 0%)',
-    transition: { duration: 0.65, ease: [0.625, 0.05, 0, 1] },
+    transition: { duration: 0.65, ease: EASE_EDITORIAL },
   },
   exit: {
     clipPath: 'inset(0% 0% 100% 0%)',
-    transition: { duration: 0.55, ease: [0.625, 0.05, 0, 1] },
+    transition: { duration: 0.55, ease: EASE_EDITORIAL },
   },
 }
 
@@ -38,13 +41,13 @@ const listVariants = {
 
 const itemVariants = {
   hidden: { yPercent: 110, opacity: 0 },
-  visible: { yPercent: 0, opacity: 1, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
-  exit: { yPercent: -30, opacity: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
+  visible: { yPercent: 0, opacity: 1, transition: { duration: 0.65, ease: EASE_SOFT } },
+  exit: { yPercent: -30, opacity: 0, transition: { duration: 0.3, ease: EASE_SOFT } },
 }
 
 const fadeVariants = {
   hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.5 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_SOFT, delay: 0.5 } },
   exit: { opacity: 0, transition: { duration: 0.2 } },
 }
 

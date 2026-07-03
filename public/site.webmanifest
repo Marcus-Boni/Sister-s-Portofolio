@@ -1,0 +1,19 @@
+{
+  "name": "Isadora Galvão Boni",
+  "short_name": "Isadora",
+  "description": "Modelo & Digital Influencer — Portfólio editorial. Moda, lifestyle, fitness e beauty.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#F2EDE4",
+  "background_color": "#F2EDE4",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
