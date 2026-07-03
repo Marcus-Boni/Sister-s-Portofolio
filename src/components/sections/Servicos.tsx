@@ -21,7 +21,7 @@ function ServiceRow({
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="grid w-full grid-cols-[2.5rem_1fr_auto] items-baseline gap-4 py-7 text-left md:grid-cols-[5rem_1fr_auto_4rem] md:py-10"
+    className="grid w-full grid-cols-[2rem_1fr_auto] items-baseline gap-3 py-6 text-left md:grid-cols-[5rem_1fr_auto_4rem] md:gap-4 md:py-10"
         initial="rest"
         whileHover="hover"
         animate="rest"
@@ -46,7 +46,7 @@ function ServiceRow({
         >
           {service.title}
         </motion.span>
-        <span className="editorial-label text-ink-soft hidden md:block">
+        <span className="editorial-label text-ink-soft md:block">
           a partir de{' '}
           <span className="font-display text-ink text-base tracking-normal normal-case italic">
             {service.fromPrice}
@@ -83,15 +83,18 @@ function ServiceRow({
                   {service.items.map((item) => (
                     <div
                       key={item.label}
-                      className="border-ink/10 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 border-t py-4 first:border-t-0 md:py-5"
+                      className="border-ink/10 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t py-5 first:border-t-0 md:py-6"
                     >
-                      <dt className="editorial-label text-ink-soft">{item.label}</dt>
+                      <dt className="editorial-label text-ink-soft flex-1">{item.label}</dt>
                       <dd className="flex items-baseline gap-3">
-                        <span className="font-display text-xl italic md:text-2xl">
-                          {item.price}
+                        <span className="font-display text-ink text-2xl italic md:text-3xl">
+                          <span className="text-terra text-lg md:text-xl">R$</span>
+                          {item.price.replace('R$', '')}
                         </span>
                         {item.note && (
-                          <span className="editorial-label text-terra">{item.note}</span>
+                          <span className="editorial-label bg-terra/10 text-terra rounded-sm px-2 py-[3px]">
+                            {item.note}
+                          </span>
                         )}
                       </dd>
                     </div>

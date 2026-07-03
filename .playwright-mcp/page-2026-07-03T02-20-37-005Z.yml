@@ -1,0 +1,46 @@
+- generic [ref=e2]:
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - heading [level=1] [ref=e8]:
+        - generic [ref=e9]: I
+        - generic [ref=e10]: S
+        - generic [ref=e11]: A
+        - generic [ref=e12]: D
+        - generic [ref=e13]: O
+        - generic [ref=e14]: R
+        - generic [ref=e15]: A
+      - paragraph [ref=e16]: Portfólio — Edição Nº 01
+    - generic [ref=e17]: "000"
+    - generic [ref=e18]: Guarapari — ES
+  - banner [ref=e19]:
+    - navigation [ref=e22]:
+      - button "Isadora G·B" [ref=e23]
+      - paragraph [ref=e24]: Modelo & Digital Influencer
+      - list [ref=e25]:
+        - listitem [ref=e26]:
+          - button "Sobre" [ref=e27]: Sobre
+        - listitem [ref=e28]:
+          - button "Portfólio" [ref=e29]: Portfólio
+        - listitem [ref=e30]:
+          - button "Serviços" [ref=e31]: Serviços
+        - listitem [ref=e32]:
+          - button "Contato" [ref=e33]: Contato
+  - main [ref=e34]:
+    - region "Apresentação" [ref=e35]:
+      - img "Retrato de Isadora sob a luz dourada do fim de tarde" [ref=e38]
+      - generic:
+        - heading "ISADORA GALVÃO BONI" [level=1]:
+          - generic:
+            - generic:
+              - generic: ISADORA
+          - generic:
+            - generic:
+              - generic: GALVÃO
+            - generic:
+              - generic: BONI
+      - generic [ref=e39]:
+        - paragraph [ref=e40]: modelo & digital influencer
+        - generic [ref=e42]:
+          - generic [ref=e43]: Edição Nº 01 — 2026
+          - generic [ref=e44]: Guarapari — ES, Brasil
+      - generic [ref=e46]: Role

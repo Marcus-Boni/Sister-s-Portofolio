@@ -11,14 +11,18 @@ import { photos, type Photo } from '@/data/site'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { cn } from '@/lib/utils'
 
-/** Plate rhythm: alternating scale and vertical offset, like a pinned wall. */
+/**
+ * Plate rhythm: alternating high/low positions, like a pinned editorial wall.
+ * All values are positive to prevent overflow-hidden from clipping images.
+ * Odd plates (0,2,4) start near the top; even (1,3,5) drop lower for stagger.
+ */
 const PLATE_STYLES = [
-  'md:h-[62vh] md:mt-[6vh]',
-  'md:h-[44vh] md:-mt-[12vh]',
-  'md:h-[70vh] md:mt-[10vh]',
-  'md:h-[50vh] md:-mt-[8vh]',
-  'md:h-[64vh] md:mt-[2vh]',
-  'md:h-[54vh] md:-mt-[10vh]',
+  'md:h-[60vh] md:mt-[5vh]',   // 1 — high
+  'md:h-[46vh] md:mt-[30vh]',  // 2 — low
+  'md:h-[68vh] md:mt-[4vh]',   // 3 — high, tallest
+  'md:h-[52vh] md:mt-[24vh]',  // 4 — low, mid-height
+  'md:h-[64vh] md:mt-[6vh]',   // 5 — high
+  'md:h-[50vh] md:mt-[26vh]',  // 6 — low
 ]
 
 export function Portfolio() {
@@ -116,7 +120,7 @@ export function Portfolio() {
 
       <div
         ref={trackRef}
-        className="relative z-10 flex flex-col gap-24 px-[6vw] py-24 will-change-transform md:h-full md:w-max md:flex-row md:items-center md:gap-[7vw] md:py-0 md:pr-[12vw] md:pl-[8vw]"
+        className="relative z-10 flex flex-col gap-16 px-[6vw] py-16 will-change-transform md:h-full md:w-max md:flex-row md:items-center md:gap-[7vw] md:py-0 md:pr-[12vw] md:pl-[8vw]"
       >
         {/* intro plate */}
         <header className="shrink-0 md:w-[26vw]">
@@ -156,16 +160,19 @@ export function Portfolio() {
                   width={photo.width}
                   height={photo.height}
                   loading="lazy"
-                  className="block aspect-[2/3] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:h-full md:w-auto md:scale-[1.16] md:group-hover:scale-[1.22]"
+                  className="block aspect-[2/3] w-full max-h-[68vw] object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:max-h-none md:h-full md:w-auto md:scale-[1.16] md:group-hover:scale-[1.22]"
                 />
               </span>
             </button>
-            <figcaption className="mt-4 flex items-baseline justify-between gap-6">
+            <figcaption className="mt-4 flex items-baseline justify-between gap-4">
               <span className="font-display text-ink text-lg italic md:text-xl">
                 {photo.title}
               </span>
-              <span className="editorial-label text-ink-soft">
-                {String(i + 1).padStart(2, '0')} · {photo.category}
+              <span className="editorial-label text-ink-soft flex items-center gap-2">
+                <span className="text-terra opacity-60">·</span>
+                <span>{String(i + 1).padStart(2, '0')}</span>
+                <span className="opacity-40">·</span>
+                <span className="tracking-[0.25em]">{photo.category.toUpperCase()}</span>
               </span>
             </figcaption>
           </figure>

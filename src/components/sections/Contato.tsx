@@ -101,7 +101,7 @@ export function Contato() {
         ))}
       </ul>
 
-      <div className="text-bone/40 mt-24 flex flex-wrap items-baseline justify-between gap-4 md:mt-36">
+      <div className="text-bone/40 mt-20 flex flex-col gap-3 md:mt-36 md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-4">
         <p className="editorial-label">© 2026 Isadora Galvão Boni</p>
         <p className="editorial-label">{contact.location}</p>
         <p className="editorial-label">Portfólio — Edição Nº 01</p>
@@ -110,7 +110,7 @@ export function Contato() {
       <p
         data-ghost-name
         aria-hidden
-        className="display-tight text-outline-bone pointer-events-none mt-10 -mb-[4vw] text-center text-[19.5vw] leading-none font-bold whitespace-nowrap opacity-25"
+        className="display-tight text-outline-bone pointer-events-none mt-8 -mb-[4vw] text-center text-[22vw] leading-none font-bold whitespace-nowrap opacity-20 md:text-[19.5vw] md:opacity-25"
       >
         ISADORA
       </p>

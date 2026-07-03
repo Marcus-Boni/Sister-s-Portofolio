@@ -120,15 +120,18 @@ export function Hero({ active }: HeroProps) {
       className="relative h-[100svh] overflow-hidden"
       aria-label="Apresentação"
     >
-      {/* image plate */}
+      {/* ── Image plate ──────────────────────────────────────────────
+          Mobile: centered horizontally, sits in the lower 2/3 of the screen.
+          Desktop (md+): anchored to the right side with slight offset.
+      */}
       <div
         ref={clipRef}
         style={{ clipPath: 'inset(100% 0% 0% 0%)' }}
-        className="absolute top-1/2 right-[6vw] z-10 -translate-y-1/2 md:right-[9vw]"
+        className="absolute z-10 left-1/2 top-[24svh] -translate-x-1/2 md:left-auto md:right-[6vw] md:top-1/2 md:translate-x-0 md:-translate-y-1/2"
       >
         <div
           ref={panelRef}
-          className="relative aspect-[1064/1600] h-[58svh] overflow-hidden md:h-[78svh]"
+          className="relative aspect-[1064/1600] h-[52svh] overflow-hidden md:h-[78svh]"
         >
           <img
             src={heroPhoto.src}
@@ -153,37 +156,44 @@ export function Hero({ active }: HeroProps) {
         </div>
       </div>
 
-      {/* masthead typography — difference blend flips it over the photo */}
+      {/* ── Masthead typography ──────────────────────────────────────
+          mix-blend-difference flips text colour over the photo.
+          Mobile: text sits at the top with a slightly smaller clamp.
+          Desktop: top-[16svh] as before.
+      */}
       <div
         data-hero-title
-        className="text-bone pointer-events-none absolute inset-x-[4vw] top-[14svh] z-20 mix-blend-difference md:top-[16svh]"
+        className="text-bone pointer-events-none absolute inset-x-[4vw] top-[10svh] z-20 mix-blend-difference md:top-[16svh]"
       >
         <h1 className="display-tight font-bold">
-          <span className="block text-[clamp(4.2rem,16vw,15rem)] leading-[1.05] pb-[0.04em]">
+          <span className="block text-[clamp(3.8rem,15vw,15rem)] leading-[1.05] pb-[0.04em]">
             <MaskWord>ISADORA</MaskWord>
           </span>
-          <span className="ml-[10vw] block text-[clamp(1.6rem,6vw,5.6rem)] leading-[1.16] font-medium tracking-[0.04em] md:ml-[16vw]">
+          <span className="ml-[8vw] block text-[clamp(1.4rem,5.5vw,5.6rem)] leading-[1.16] font-medium tracking-[0.04em] md:ml-[16vw]">
             <MaskWord>GALVÃO</MaskWord> <MaskWord>BONI</MaskWord>
           </span>
         </h1>
       </div>
 
-      {/* editorial meta */}
-      <div className="absolute bottom-[5svh] left-[4vw] z-20 max-w-[60vw]">
+      {/* ── Editorial meta — bottom left ─────────────────────────────
+          Mobile: smaller text, limited width.
+          Desktop: same as before.
+      */}
+      <div className="absolute bottom-[5svh] left-[4vw] z-20 max-w-[55vw] md:max-w-[60vw]">
         <p
           data-hero-fade
-          className="font-sans text-ink text-[clamp(1rem,2vw,1.5rem)] leading-snug italic font-light tracking-wide"
+          className="font-sans text-ink text-[clamp(0.85rem,2vw,1.5rem)] leading-snug italic font-light tracking-wide"
         >
           modelo &amp; digital influencer
         </p>
-        <div data-hero-fade className="bg-line mt-5 h-px w-[34vw] max-w-72 md:mt-7" />
-        <div data-hero-fade className="editorial-label text-ink-soft mt-5 flex flex-col gap-2 md:mt-7">
+        <div data-hero-fade className="bg-line mt-4 h-px w-[30vw] max-w-72 md:mt-7" />
+        <div data-hero-fade className="editorial-label text-ink-soft mt-4 flex flex-col gap-2 md:mt-7">
           <span>Edição Nº 01 — 2026</span>
           <span>Guarapari — ES, Brasil</span>
         </div>
       </div>
 
-      {/* vertical edge label */}
+      {/* ── Vertical edge label — desktop only ──────────────────────── */}
       <p
         data-hero-fade
         className="editorial-label text-ink-soft absolute top-1/2 right-[2vw] z-20 hidden -translate-y-1/2 [writing-mode:vertical-rl] lg:block"
@@ -191,13 +201,24 @@ export function Hero({ active }: HeroProps) {
         Portfólio — da moda casual e praia ao fitness e lifestyle
       </p>
 
-      {/* scroll cue */}
+      {/* ── Scroll cue ──────────────────────────────────────────────
+          Desktop: "Role" label + animated line.
+          Mobile: minimal animated arrow at bottom-center.
+      */}
       <div
         data-hero-fade
-        className="absolute bottom-[5svh] right-[6vw] z-20 hidden flex-col items-center gap-3 md:flex"
+        className="absolute bottom-[5svh] right-[3vw] z-20 hidden flex-col items-center gap-3 md:flex"
       >
         <span className="editorial-label text-ink-soft">Role</span>
         <span data-scroll-cue-line className="bg-ink-soft block h-12 w-px" />
+      </div>
+
+      {/* Mobile scroll cue — centered arrow */}
+      <div
+        data-hero-fade
+        className="absolute bottom-[3svh] left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-2 md:hidden"
+      >
+        <span data-scroll-cue-line className="bg-ink-soft block h-8 w-px" />
       </div>
     </section>
   )

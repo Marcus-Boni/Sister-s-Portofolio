@@ -91,8 +91,8 @@ export function Sobre() {
         </div>
 
         {/* portrait spread */}
-        <div className="relative md:col-span-5">
-          <div data-sobre-portrait className="relative ml-auto w-[78%] md:w-[86%]">
+        <div className="relative pb-20 md:pb-0 md:col-span-5">
+          <div data-sobre-portrait className="relative ml-auto w-[88%] md:w-[86%]">
             <p className="editorial-label text-ink-soft mb-4 flex justify-between">
               <span>{sobrePhoto.title}</span>
               <span>{sobrePhoto.category}</span>
@@ -108,7 +108,7 @@ export function Sobre() {
           </div>
           <div
             data-sobre-detail
-            className="border-bone bg-bone absolute -bottom-16 left-0 w-[42%] rotate-[-4deg] border-8 shadow-[0_24px_60px_rgb(27_21_17/0.18)] md:-left-10 md:w-[38%]"
+            className="border-bone bg-bone absolute bottom-0 left-0 w-[42%] rotate-[-4deg] border-8 shadow-[0_24px_60px_rgb(27_21_17/0.18)] translate-y-[60%] md:translate-y-0 md:-bottom-16 md:-left-10 md:w-[38%]"
           >
             <img
               src={sobrePhotoDetail.small}

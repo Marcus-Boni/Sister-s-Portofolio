@@ -21,9 +21,9 @@ export const photos: Photo[] = [
   {
     src: '/images/fitness-tennis.webp',
     small: '/images/fitness-tennis-800.webp',
-    alt: 'Isadora sorrindo apoiada na rede de uma quadra de saibro',
+    alt: 'Isadora sorrindo apoiada na rede de uma quadra de tênis',
     category: 'Fitness',
-    title: 'Saibro',
+    title: 'Esporte',
     width: 852,
     height: 1280,
   },
