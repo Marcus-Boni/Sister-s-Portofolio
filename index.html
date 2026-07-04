@@ -60,12 +60,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- ── Preload da imagem hero (LCP) ───────────────────── -->
-    <link rel="preload" as="image" href="/images/beauty-golden-hour.webp" type="image/webp" />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/beauty-golden-hour-800.webp"
+      imagesrcset="/images/beauty-golden-hour-800.webp 800w, /images/beauty-golden-hour.webp 1064w"
+      imagesizes="(max-width: 768px) 80vw, 50vw"
+      type="image/webp"
+    />
 
     <title>Isadora Galvão Boni — Modelo & Digital Influencer</title>
   </head>

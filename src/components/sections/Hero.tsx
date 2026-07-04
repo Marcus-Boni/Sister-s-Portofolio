@@ -39,6 +39,9 @@ export function Hero({ active }: HeroProps) {
   const clipRef = useRef<HTMLDivElement>(null)
   const pointerRef = useRef<PointerState>({ x: 0.5, y: 0.5, lastX: 0.5, lastY: 0.5 })
   const [inView, setInView] = useState(true)
+  const [isDesktop, setIsDesktop] = useState(() =>
+    window.matchMedia('(min-width: 768px) and (pointer: fine)').matches
+  )
   const reduced = usePrefersReducedMotion()
 
   const onPointerMove = (e: PointerEvent<HTMLElement>) => {
@@ -55,6 +58,13 @@ export function Hero({ active }: HeroProps) {
     const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting))
     observer.observe(section)
     return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 768px) and (pointer: fine)')
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
+    media.addEventListener('change', handler)
+    return () => media.removeEventListener('change', handler)
   }, [])
 
   // Entrance — fired by the preloader hand-off
@@ -134,14 +144,16 @@ export function Hero({ active }: HeroProps) {
           className="relative aspect-[1064/1600] h-[52svh] overflow-hidden md:h-[78svh]"
         >
           <img
-            src={heroPhoto.src}
+            src={heroPhoto.small}
+            srcSet={`${heroPhoto.small} 800w, ${heroPhoto.src} 1064w`}
+            sizes="(max-width: 768px) 80vw, 50vw"
             alt={heroPhoto.alt}
             width={heroPhoto.width}
             height={heroPhoto.height}
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
           />
-          {!reduced && (
+          {!reduced && isDesktop && (
             <Suspense fallback={null}>
               <HeroCanvas
                 src={heroPhoto.src}

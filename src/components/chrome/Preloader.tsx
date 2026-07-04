@@ -57,7 +57,10 @@ export function Preloader({ onReveal }: PreloaderProps) {
         0.2,
       )
 
+      let exited = false
       const exit = () => {
+        if (exited) return
+        exited = true
         const elapsed = (performance.now() - started) / 1000
         const wait = Math.max(0, MIN_DURATION - elapsed)
         const out = gsap.timeline({ delay: wait, onComplete: () => setGone(true) })
@@ -71,7 +74,21 @@ export function Preloader({ onReveal }: PreloaderProps) {
         out.to(inkRef.current, { yPercent: -100, duration: 1.05, ease: 'power4.inOut' }, 0.37)
       }
 
-      void document.fonts.ready.then(exit)
+      const timeoutId = setTimeout(exit, 3000)
+
+      void document.fonts.ready
+        .then(() => {
+          clearTimeout(timeoutId)
+          exit()
+        })
+        .catch(() => {
+          clearTimeout(timeoutId)
+          exit()
+        })
+
+      return () => {
+        clearTimeout(timeoutId)
+      }
     },
     { scope: rootRef },
   )

@@ -156,6 +156,8 @@ export function Portfolio() {
                 <img
                   data-plate-img
                   src={photo.small}
+                  srcSet={`${photo.small} 800w, ${photo.src} 1200w`}
+                  sizes="(max-width: 768px) 80vw, (max-width: 1024px) 30vw, 400px"
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}

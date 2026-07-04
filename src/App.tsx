@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { CustomCursor } from '@/components/chrome/CustomCursor'
 import { GrainOverlay } from '@/components/chrome/GrainOverlay'
@@ -14,19 +14,6 @@ import { Sobre } from '@/components/sections/Sobre'
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
-  const [fontsReady, setFontsReady] = useState(false)
-
-  // Sections that split text only mount once webfonts have settled,
-  // so line breaks are measured against the real typefaces.
-  useEffect(() => {
-    let cancelled = false
-    void document.fonts.ready.then(() => {
-      if (!cancelled) setFontsReady(true)
-    })
-    return () => {
-      cancelled = true
-    }
-  }, [])
 
   return (
     <SmoothScroll paused={!introDone}>
@@ -37,15 +24,11 @@ export default function App() {
 
       <main>
         <Hero active={introDone} />
-        {fontsReady && (
-          <>
-            <Marquee />
-            <Sobre />
-            <Portfolio />
-            <Servicos />
-            <Contato />
-          </>
-        )}
+        <Marquee />
+        <Sobre />
+        <Portfolio />
+        <Servicos />
+        <Contato />
       </main>
     </SmoothScroll>
   )

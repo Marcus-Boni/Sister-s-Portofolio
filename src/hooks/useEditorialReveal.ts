@@ -31,30 +31,58 @@ export function useEditorialReveal<T extends HTMLElement = HTMLHeadingElement>(
     if (!el) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    el.classList.add('reveal-lines')
-    const split = new SplitType(el, { types: 'lines,words', tagName: 'span' })
-    if (!split.words?.length) return
+    let active = true
+    let splitInstance: SplitType | null = null
 
-    gsap.set(el, { visibility: 'visible' })
-    gsap.fromTo(
-      split.words,
-      { yPercent: 120 },
-      {
-        yPercent: 0,
-        duration: 1.25,
-        ease: 'power4.out',
-        stagger,
-        delay,
-        scrollTrigger: immediate
-          ? undefined
-          : { trigger: el, start, once: true },
-        onComplete: () => {
-          split.revert()
-          el.classList.remove('reveal-lines')
+    const initReveal = () => {
+      if (!active || !el) return
+      el.classList.add('reveal-lines')
+      splitInstance = new SplitType(el, { types: 'lines,words', tagName: 'span' })
+      if (!splitInstance.words?.length) return
+
+      gsap.set(el, { visibility: 'visible' })
+      gsap.fromTo(
+        splitInstance.words,
+        { yPercent: 120 },
+        {
+          yPercent: 0,
+          duration: 1.25,
+          ease: 'power4.out',
+          stagger,
+          delay,
+          scrollTrigger: immediate
+            ? undefined
+            : { trigger: el, start, once: true },
+          onComplete: () => {
+            if (splitInstance) {
+              splitInstance.revert()
+              splitInstance = null
+            }
+            el.classList.remove('reveal-lines')
+          },
         },
-      },
-    )
-  }, [])
+      )
+    }
+
+    if (document.fonts.status === 'loaded') {
+      initReveal()
+    } else {
+      document.fonts.ready
+        .then(() => {
+          initReveal()
+        })
+        .catch(() => {
+          initReveal()
+        })
+    }
+
+    return () => {
+      active = false
+      if (splitInstance) {
+        splitInstance.revert()
+      }
+    }
+  }, [stagger, delay, immediate, start])
 
   return ref
 }

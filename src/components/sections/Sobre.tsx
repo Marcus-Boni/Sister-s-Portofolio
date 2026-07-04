@@ -110,7 +110,9 @@ export function Sobre() {
               <span>{sobrePhoto.category}</span>
             </p>
             <img
-              src={sobrePhoto.src}
+              src={sobrePhoto.small}
+              srcSet={`${sobrePhoto.small} 800w, ${sobrePhoto.src} 1200w`}
+              sizes="(max-width: 768px) 88vw, (max-width: 1024px) 40vw, 500px"
               alt={sobrePhoto.alt}
               width={sobrePhoto.width}
               height={sobrePhoto.height}
@@ -124,6 +126,8 @@ export function Sobre() {
           >
             <img
               src={sobrePhotoDetail.small}
+              srcSet={`${sobrePhotoDetail.small} 800w, ${sobrePhotoDetail.src} 1064w`}
+              sizes="(max-width: 768px) 40vw, 250px"
               alt={sobrePhotoDetail.alt}
               width={sobrePhotoDetail.width}
               height={sobrePhotoDetail.height}
