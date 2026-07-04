@@ -202,6 +202,10 @@ export const contact = {
     label: 'isadoragbonita@gmail.com',
     href: 'mailto:isadoragbonita@gmail.com',
   },
+  mediaKit: {
+    label: 'Visualizar Mídia Kit',
+    href: '/PDF/Mídia-kit-Isa.pdf',
+  },
   location: 'Guarapari — ES, Brasil',
 }
 

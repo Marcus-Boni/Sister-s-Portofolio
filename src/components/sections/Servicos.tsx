@@ -21,13 +21,13 @@ function ServiceRow({
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-    className="grid w-full grid-cols-[2rem_1fr_auto] items-baseline gap-3 py-6 text-left md:grid-cols-[5rem_1fr_auto_4rem] md:gap-4 md:py-10"
+        className="grid w-full grid-cols-[2rem_1fr_2rem] items-baseline gap-x-3 gap-y-1.5 py-6 text-left md:grid-cols-[5rem_1fr_auto_4rem] md:gap-4 md:py-10"
         initial="rest"
         whileHover="hover"
         animate="rest"
       >
         <motion.span
-          className="font-display text-ink-soft text-sm italic md:text-lg"
+          className="font-display text-ink-soft text-sm italic col-start-1 row-start-1 md:text-lg md:col-auto md:row-auto"
           variants={{
             rest: { opacity: 0.5 },
             hover: { opacity: 1 },
@@ -37,7 +37,7 @@ function ServiceRow({
           {service.index}
         </motion.span>
         <motion.span
-          className="font-display text-[clamp(1.6rem,4.2vw,3.4rem)] leading-none font-medium"
+          className="font-display text-[clamp(1.6rem,4.2vw,3.4rem)] leading-none font-medium col-start-2 row-start-1 md:col-auto md:row-auto"
           variants={{
             rest: { x: 0, color: open ? 'var(--color-terra-deep)' : 'var(--color-ink)' },
             hover: { x: 8, color: open ? 'var(--color-terra-deep)' : 'var(--color-terra)' },
@@ -46,7 +46,7 @@ function ServiceRow({
         >
           {service.title}
         </motion.span>
-        <span className="editorial-label text-ink-soft md:block">
+        <span className="editorial-label text-ink-soft col-start-2 row-start-2 md:col-auto md:row-auto md:block">
           a partir de{' '}
           <span className="font-display text-ink text-base tracking-normal normal-case italic">
             {service.fromPrice}
@@ -54,7 +54,10 @@ function ServiceRow({
         </span>
         <motion.span
           aria-hidden
-          className={cn('font-display justify-self-end text-2xl leading-none md:text-4xl', open ? 'text-terra' : 'text-ink')}
+          className={cn(
+            'font-display justify-self-end text-2xl leading-none col-start-3 row-start-1 row-span-2 self-center md:text-4xl md:col-auto md:row-auto md:self-baseline',
+            open ? 'text-terra' : 'text-ink'
+          )}
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >

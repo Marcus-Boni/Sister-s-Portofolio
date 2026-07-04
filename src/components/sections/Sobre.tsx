@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useRef } from 'react'
 
-import { manifesto, niches, sobrePhoto, sobrePhotoDetail } from '@/data/site'
+import { contact, manifesto, niches, sobrePhoto, sobrePhotoDetail } from '@/data/site'
 import { useEditorialReveal } from '@/hooks/useEditorialReveal'
 import { gsap, useGSAP } from '@/lib/gsap'
 
@@ -82,11 +82,23 @@ export function Sobre() {
             {manifesto}
           </p>
 
-          <div className="mt-12 flex items-center gap-6 md:mt-20">
-            <span className="bg-terra size-2 rounded-full" />
-            <p className="editorial-label text-ink-soft">
-              Disponível para campanhas, catálogos &amp; collabs
-            </p>
+          <div className="mt-12 flex flex-col items-start gap-6 md:mt-20">
+            <div className="flex items-center gap-4">
+              <span className="bg-terra size-2 rounded-full" />
+              <p className="editorial-label text-ink-soft">
+                Disponível para campanhas, catálogos &amp; collabs
+              </p>
+            </div>
+            <a
+              href={contact.mediaKit.href}
+              target="_blank"
+              rel="noreferrer"
+              className="editorial-label text-ink group relative inline-flex items-center gap-2 border border-ink/20 px-5 py-3.5 transition-colors duration-300 hover:border-terra hover:text-terra"
+            >
+              Acessar Mídia Kit
+              <span className="font-display text-sm italic transition-transform duration-300 group-hover:translate-x-1">→</span>
+              <span className="bg-terra/5 absolute inset-0 -z-10 origin-bottom scale-y-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100" />
+            </a>
           </div>
         </div>
 

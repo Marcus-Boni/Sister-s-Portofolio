@@ -9,6 +9,7 @@ const LINKS = [
   { key: 'instagram', label: 'Instagram', value: contact.instagram.label, href: contact.instagram.href },
   { key: 'whatsapp', label: 'WhatsApp', value: contact.whatsapp.label, href: contact.whatsapp.href },
   { key: 'email', label: 'E-mail', value: contact.email.label, href: contact.email.href },
+  { key: 'mediaKit', label: 'Mídia Kit', value: 'Acessar resumo de mídia (PDF)', href: contact.mediaKit.href },
 ]
 
 export function Contato() {
